@@ -29,3 +29,9 @@ app.get('/posts/:id_post', async (req, res) => {
 });
 
 app.listen(8000, () => console.log('Server running on port 8000'));
+
+// GET author by id
+app.get('/author/:id_author', async (req, res) => {
+  const author = await db.one('SELECT * FROM author WHERE id_author = $1', [req.params.id_author]);
+  res.json(author);
+});

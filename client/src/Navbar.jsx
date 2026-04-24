@@ -13,6 +13,9 @@ export default function Navbar() {
       <NavLink to="/contact" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
         CONTACTO
       </NavLink>
+      <NavLink to="/author" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+        AUTORES
+      </NavLink>
     </nav>
   );
 }

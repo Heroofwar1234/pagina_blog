@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Blog() {
   const [movies, setMovies] = useState([]);
@@ -43,7 +44,7 @@ export default function Blog() {
 
       <div className="grid">
         {paginated.map((movie, i) => (
-          <div key={i} className="movie-card">
+          <Link to={"/blog/" + movie.id_post} key={i} className="movie-card">
             <div className="movie-card-image">
               {movie.image && <img src={movie.image} alt={movie.title} />}
             </div>
@@ -51,7 +52,7 @@ export default function Blog() {
               <span className="date">{movie.date}</span>
               <p className="title">{movie.title}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
