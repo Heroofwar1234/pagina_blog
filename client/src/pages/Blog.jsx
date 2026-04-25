@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Blog() {
+  const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
@@ -67,6 +68,10 @@ export default function Blog() {
           </button>
         </div>
       )}
+
+      <div className="create-post-bar">
+        <button onClick={() => navigate('/blog/new')}>+ Crear Post</button>
+      </div>
     </div>
   );
 }
