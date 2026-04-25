@@ -6,9 +6,12 @@ export default function Author() {
   const [author, setAuthor] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/author/${id_author}`)
+    fetch(`http://localhost:8000/author/${id_author}`, {
+      credentials: "include"
+    })
       .then(res => res.json())
-      .then(data => setAuthor(data));
+      .then(data => setAuthor(data))
+      .catch(error => console.log(error));
   }, [id_author]);
 
   if (!author) return <div className="page"><p className="section-title">Loading...</p></div>;

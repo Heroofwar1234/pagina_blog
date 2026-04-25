@@ -1,6 +1,12 @@
 import "./Contact.css";
+import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+
 
 export default function Contact() {
+  const isAuth = useAuth();
+  if (isAuth === null) return <div className="page"><p className="section-title">Loading...</p></div>;
+
   return (
     <div className="contact-page">
       <div className="contact-card">

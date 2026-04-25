@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Blog() {
+  const isAuth = useAuth();
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
@@ -10,10 +12,11 @@ export default function Blog() {
   const itemsPerPage = 8;
 
   useEffect(() => {
+    if (!isAuth) return;
     fetch('http://localhost:8000/posts')
       .then(res => res.json())
       .then(data => setMovies(data));
-  }, []);
+  }, [isAuth]);
 
   const filtered = movies.filter((m) =>
     m.title.toLowerCase().includes(search.toLowerCase())
@@ -25,6 +28,8 @@ export default function Blog() {
   );
 
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
+  if (isAuth === null) return <div className="page"><p className="section-title">Loading...</p></div>;
 
   return (
     <div className="page">
@@ -59,13 +64,9 @@ export default function Blog() {
 
       {totalPages > 1 && (
         <div className="pagination">
-          <button onClick={() => setPage(page - 1)} disabled={page === 0}>
-            Prev
-          </button>
+          <button onClick={() => setPage(page - 1)} disabled={page === 0}>Prev</button>
           <span>{page + 1} / {totalPages}</span>
-          <button onClick={() => setPage(page + 1)} disabled={page + 1 >= totalPages}>
-            Next
-          </button>
+          <button onClick={() => setPage(page + 1)} disabled={page + 1 >= totalPages}>Next</button>
         </div>
       )}
 

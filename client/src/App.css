@@ -387,3 +387,20 @@
 .create-post-bar button:hover {
   background: #333;
 }
+.navbar-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+
+.navbar-btn:hover {
+  color: #fff;
+  border: none;
+}
